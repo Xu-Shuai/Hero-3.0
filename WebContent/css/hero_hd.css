@@ -175,3 +175,11 @@ a:active {color: gold}   /* 被选择的链接 */
 	font-size: 25px;
 	opacity: 0.8;
 }
+#desc{
+	width: 950px;
+	height: 580px;
+	background: white;
+	position:absolute;
+	top: 35px;
+	left: 35px;
+}

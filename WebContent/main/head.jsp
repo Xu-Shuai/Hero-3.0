@@ -24,6 +24,7 @@
         		
         		<div id="main_desc">
         			<img src="../img/ty_x.png" width="1020px" height="650px"/>
+        			<div id="desc"></div>
         		</div>
         		
         		<div id="menu1"><a href="#">我的专区</a></div>
