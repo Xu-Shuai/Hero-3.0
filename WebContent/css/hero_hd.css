@@ -1,0 +1,185 @@
+a:link {text-decoration:none;color: orange;}     /* 未访问的链接 */
+a:visited {color: goldenrod}  /* 已访问的链接 */
+a:hover {color: cornflowerblue}    /* 当有鼠标悬停在链接上 */
+a:active {color: gold}   /* 被选择的链接 */
+#star_bg{
+	background: yellow;
+	width: 1330px;
+	height: 800px;
+	margin: auto;
+}
+#star_img_dv{
+	position: relative;
+	width: 1330px;
+	height: 800px;
+}
+#star_img{
+	width: 1330px;
+	height: 800px;
+}
+#daohang{
+	position: absolute;
+	width: 1330px;
+	height: 50px;
+	background: white;
+	margin-top: -750px;
+	opacity: 0.7;
+}
+#c1{
+	height: 50px;
+	width: 130px;
+	position: relative;
+	margin-top: -750px;
+	margin-left: 250px;
+	line-height: 50px;
+	text-align: center;
+	color: orange;
+	font-family: "微软雅黑";
+	font-size: 22px;
+}
+#c2{
+	height: 50px;
+	width: 130px;
+	position: relative;
+	margin-top: -50px;
+	margin-left: 470px;
+	line-height: 50px;
+	text-align: center;
+	color: orange;
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+#c3{
+	height: 50px;
+	width: 130px;
+	position: relative;
+	margin-top: -50px;
+	margin-left: 680px;
+	line-height: 50px;
+	text-align: center;
+	color: orange;
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+#c4{
+	height: 50px;
+	width: 130px;
+	position: relative;
+	margin-top: -50px;
+	margin-left: 880px;
+	line-height: 50px;
+	text-align: center;
+	color: orange;
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+#c5{
+	height: 50px;
+	width: 130px;
+	position: relative;
+	margin-top: -50px;
+	margin-left: 1080px;
+	line-height: 50px;
+	text-align: center;
+	color: orange;
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
+.dv_top:hover{
+	transform: rotateX(360deg);
+	transition:all 1s ;
+}
+#lo{
+	width: 230px;
+	position: relative;
+	margin-top: -95px;
+	margin-left: 10px;
+}
+#main_desc{
+	position: relative;
+	left: 250px;
+	width: 1020px;
+}
+#menu1{
+	position: absolute;
+	border-radius:15px;
+	background: white;
+	width: 185px;
+	height: 52px;
+	left: 40px;
+	top:220px ;
+	line-height: 52px;
+	text-align: center;
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 25px;
+	opacity: 0.8;
+}
+#menu2{
+	position: absolute;
+	border-radius:15px;
+	background: white;
+	width: 185px;
+	height: 52px;
+	left: 40px;
+	top: 320px;
+	line-height: 52px;
+	text-align: center;
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 25px;
+	opacity: 0.8;
+}
+#menu3{
+	position: absolute;
+	border-radius:15px;
+	background: white;
+	width: 185px;
+	height: 52px;
+	left: 40px;
+	top: 420px;
+	line-height: 52px;
+	text-align: center;
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 25px;
+	opacity: 0.8;
+}
+#menu4{
+	position: absolute;
+	border-radius:15px;
+	background: white;
+	width: 185px;
+	height: 52px;
+	left: 40px;
+	top: 520px;
+	line-height: 52px;
+	text-align: center;
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 25px;
+	opacity: 0.8;
+}
+#menu5{
+	position: absolute;
+	border-radius:15px;
+	background: white;
+	width: 185px;
+	height: 52px;
+	left: 40px;
+	top: 620px;
+	line-height: 52px;
+	text-align: center;
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 25px;
+	opacity: 0.8;
+}
+#desc{
+	width: 950px;
+	height: 580px;
+	background: white;
+	position:absolute;
+	top: 35px;
+	left: 35px;
+}
