@@ -26,7 +26,9 @@
         			<img src="../img/ty_x.png" width="1020px" height="650px"/>
         			<!-- 这是写自己的主要内容的地方 -->
         			<div id="desc">
-        				
+        				<div class="addmyHero">
+        					
+        				</div>
         			</div>
         		</div>
         		
