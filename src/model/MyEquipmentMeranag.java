@@ -1,4 +1,4 @@
-package Controller;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.MyEquipment;
-import model.Myhero;
 
 
 public class MyEquipmentMeranag {
@@ -28,7 +26,7 @@ public class MyEquipmentMeranag {
 		String DRIVER = "com.mysql.jdbc.Driver";
 		String USER = "root";
 		String PASS = "root";
-		String URL = "jdbc:mysql://localhost:3306/myhero";
+		String URL = "jdbc:mysql://localhost:3306/hero";
 		try {
 			Class.forName(DRIVER);
 		    return DriverManager.getConnection(URL,USER,PASS);
@@ -40,12 +38,11 @@ public class MyEquipmentMeranag {
 	}
 	//添加装备
 	public void addMyEquipment(MyEquipment myEquipment){
-		String sql = "insert into myhero values (id,?,?,?,?)";
+		String sql = "insert into Equipment values (id,?,?,?,?)";
 		con = getConnection();
 		
 		try {
-			ps = con.prepareStatement(sql);
-			
+			ps = con.prepareStatement(sql);			
 			ps.setString(1, myEquipment.getName());
 			ps.setString(2, myEquipment.getImgId());
 			ps.setString(3, myEquipment.getBd());
@@ -63,16 +60,14 @@ public class MyEquipmentMeranag {
 		con = getConnection();		
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from gedan");
+			rs = stmt.executeQuery("select * from Equipment");
 			myEquipments = new ArrayList<MyEquipment>();			
 			while(rs.next()){
-				myEquipment = new MyEquipment();
-				
+				myEquipment = new MyEquipment();				
 				myEquipment.setName(rs.getString("NAME"));
 				myEquipment.setImgId(rs.getString("IMGID"));
 				myEquipment.setBd(rs.getString("BD"));
-				myEquipment.setSx(rs.getString("SX"));
-				
+				myEquipment.setSx(rs.getString("SX"));				
 				myEquipments.add(myEquipment);
 			}
 			rs.close();
@@ -86,7 +81,7 @@ public class MyEquipmentMeranag {
 	}
 	//修改英雄信息
 		public void modifyMyhero(MyEquipment myEquipment){
-			String sql = "UPDATE MyEquipment SET NAME = '?'"
+			String sql = "UPDATE Equipment SET NAME = '?'"
 					+ ",IMGID='?'"
 					+ ",BD='?'"
 					+ ",SX='?' WHERE ID = '"+myEquipment.getId()+"' ";
