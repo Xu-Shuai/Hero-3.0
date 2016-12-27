@@ -100,8 +100,7 @@ public class MyEquipmentMeranag {
 				ps.setString(2, myEquipment.getImgId());
 				ps.setString(3, myEquipment.getBd());
 				ps.setString(4, myEquipment.getSx());
-				ps.executeUpdate();
-				
+				ps.executeUpdate();				
 				ps.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
