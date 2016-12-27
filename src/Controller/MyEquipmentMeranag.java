@@ -64,8 +64,7 @@ public class MyEquipmentMeranag {
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("select * from gedan");
-			myEquipments = new ArrayList<MyEquipment>();
-			
+			myEquipments = new ArrayList<MyEquipment>();			
 			while(rs.next()){
 				myEquipment = new MyEquipment();
 				
@@ -94,8 +93,7 @@ public class MyEquipmentMeranag {
 			con = getConnection();
 			
 			try {
-				ps = con.prepareStatement(sql);
-				
+				ps = con.prepareStatement(sql);				
 				ps.setString(1, myEquipment.getName());
 				ps.setString(2, myEquipment.getImgId());
 				ps.setString(3, myEquipment.getBd());
