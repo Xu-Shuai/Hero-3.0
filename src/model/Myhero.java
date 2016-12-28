@@ -6,7 +6,11 @@ public class Myhero {
 	private String heroCode;
 	private String heroLogo;
 	
-	public void Myhero(){
+	public Myhero(int id) {
+		//这是个带参数的构造方法
+		this.id = id;
+	}
+	public  Myhero(){
 		//这是个空的构造方法
 	}
 
@@ -32,6 +36,12 @@ public class Myhero {
 
 	public void setHeroLogo(String heroLogo) {
 		this.heroLogo = heroLogo;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	
