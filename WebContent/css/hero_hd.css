@@ -1,7 +1,7 @@
-a:link {text-decoration:none;color: orange;}     /* 未访问的链接 */
-a:visited {color: goldenrod}  /* 已访问的链接 */
-a:hover {color: cornflowerblue}    /* 当有鼠标悬停在链接上 */
-a:active {color: gold}   /* 被选择的链接 */
+a:link {text-decoration:none;color: orange;}     /* 鏈闂殑閾炬帴 */
+a:visited {color: goldenrod}  /* 宸茶闂殑閾炬帴 */
+a:hover {color: cornflowerblue}    /* 褰撴湁榧犳爣鎮仠鍦ㄩ摼鎺ヤ笂 */
+a:active {color: gold}   /* 琚�夋嫨鐨勯摼鎺� */
 #star_bg{
 	background: yellow;
 	width: 1330px;
@@ -34,7 +34,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 50px;
 	text-align: center;
 	color: orange;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 22px;
 }
 #c2{
@@ -46,7 +46,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 50px;
 	text-align: center;
 	color: orange;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 20px;
 }
 #c3{
@@ -58,7 +58,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 50px;
 	text-align: center;
 	color: orange;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 20px;
 }
 #c4{
@@ -70,7 +70,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 50px;
 	text-align: center;
 	color: orange;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 20px;
 }
 #c5{
@@ -82,7 +82,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 50px;
 	text-align: center;
 	color: orange;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 20px;
 }
 .dv_top:hover{
@@ -111,7 +111,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 52px;
 	text-align: center;
 	color: white;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 25px;
 	opacity: 0.8;
 }
@@ -126,7 +126,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 52px;
 	text-align: center;
 	color: white;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 25px;
 	opacity: 0.8;
 }
@@ -141,7 +141,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 52px;
 	text-align: center;
 	color: white;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 25px;
 	opacity: 0.8;
 }
@@ -156,7 +156,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 52px;
 	text-align: center;
 	color: white;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 25px;
 	opacity: 0.8;
 }
@@ -171,7 +171,7 @@ a:active {color: gold}   /* 被选择的链接 */
 	line-height: 52px;
 	text-align: center;
 	color: white;
-	font-family: "微软雅黑";
+	font-family: "寰蒋闆呴粦";
 	font-size: 25px;
 	opacity: 0.8;
 }
@@ -182,4 +182,9 @@ a:active {color: gold}   /* 被选择的链接 */
 	position:absolute;
 	top: 35px;
 	left: 35px;
+}
+#desc #xs01{
+	width: 50%;
+	height: 580px;
+	background: black;
 }
