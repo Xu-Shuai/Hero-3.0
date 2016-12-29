@@ -17,7 +17,7 @@ import model.MyEquipmentMeranag;
 /**
  * Servlet implementation class MyEquipmentServlet
  */
-@WebServlet("/MyEquipmentServlet")
+@WebServlet("/xs")
 public class MyEquipmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,19 +33,19 @@ public class MyEquipmentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		MyEquipmentMeranag mem=new MyEquipmentMeranag();
+		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
+		myEquipments=mem.allMusic();
+		request.setAttribute("myEquipments", myEquipments);
+		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
+		dis.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MyEquipmentMeranag mem=new MyEquipmentMeranag();
-		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
-		myEquipments=mem.allMusic();
-		RequestDispatcher dis=request.getRequestDispatcher("../main/xs.jsp");
-		doGet(request, response);
+		
 	}
 
 }
