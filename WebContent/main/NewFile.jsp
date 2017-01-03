@@ -12,5 +12,8 @@
     <form action="<c:url value='/xs' />">
     <button type="submit">提交</button> 
     </form>
+    <form action="<c:url value='/yx' />">
+    <button type="submit">提交2</button> 
+    </form>
 </body>
 </html>
