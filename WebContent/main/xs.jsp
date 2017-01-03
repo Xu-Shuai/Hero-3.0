@@ -209,6 +209,7 @@ $(function(){
 							<br /> <br /> <br /> <br /> <br /> <br />
 							<img id="btn2" alt="" src="<c:url value='/img/sure.jpg' />" >
 						</form>
+						
 					</div>
 				</c:forEach>
 
