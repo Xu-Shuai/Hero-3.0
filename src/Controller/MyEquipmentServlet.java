@@ -32,6 +32,7 @@ public class MyEquipmentServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //查询单个装备信息
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//转码
 		request.setCharacterEncoding("utf-8");
@@ -43,7 +44,7 @@ public class MyEquipmentServlet extends HttpServlet {
 		
 		MyEquipmentMeranag mem01=new MyEquipmentMeranag();
 		List<MyEquipment> myEquipments01=new ArrayList<MyEquipment>();
-		myEquipments01=mem01.allMusic();
+		myEquipments01=mem01.allZb(1);
 		request.setAttribute("myEquipments", myEquipments01);
 		
 		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
@@ -55,12 +56,7 @@ public class MyEquipmentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MyEquipmentMeranag mem=new MyEquipmentMeranag();		
-		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
-		myEquipments=mem.allMusic();
-		request.setAttribute("myEquipments", myEquipments);
-		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
-		dis.forward(request, response);
+		
 		
 	}
 

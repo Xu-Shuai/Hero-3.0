@@ -19,7 +19,12 @@ $(function(){
 		$("#tab1").hide();
 		$("#tab2").show();
 		$(this).remove();
+		
 	});
+	$("#btn2").click(function(){
+		$("#form").submit();
+	});
+	
 })
 </script>
 </head>
@@ -57,10 +62,11 @@ $(function(){
 		<!-- 这是写自己的主要内容的地方 -->
 		<div id="desc">
 			<!-- 显示所有装备 -->
-			<div id="xs01">
+			<div id="xs01" align="center">
 				<%
 					ArrayList<MyEquipment> myEquipments = new ArrayList<MyEquipment>();
 					myEquipments = (ArrayList<MyEquipment>) request.getAttribute("myEquipments");
+					int currentPage=1;
 				%>
 				<c:set value="${myEquipments}" var="Equipments" />
 
@@ -70,8 +76,10 @@ $(function(){
 							<tr>
 								<td><a
 									href="http://localhost/Hero/xs?id=<c:url value='${myEquipment.id }' />"><img
-										src="<c:url value='${myEquipment.imgId }' />" style="width: 50px;height: 50px;"/></a></td>
+										src="<c:url value='${myEquipment.imgId }' />"
+										style="width: 50px; height: 50px;" /></a></td>
 							</tr>
+							
 							<tr>
 								<td align="center"><a
 									href="http://localhost/Hero/xs?id=<c:url value='${myEquipment.id }' />"><c:out
@@ -80,6 +88,27 @@ $(function(){
 						</table>
 					</div>
 				</c:forEach>
+				 <script language="javascript">
+	 function openPage(curpage){
+	  document.form1.cp.value=curpage;
+	  document.form1.submit();
+ }
+	 function openPage1(curpage){
+		  document.form1.cp.value=curpage-1;
+		  document.form1.submit();
+	 }
+	 function openPage2(curpage){
+		  document.form1.cp.value=curpage+1;
+		  document.form1.submit();
+	 }
+ </script>
+				<form action="<c:url value='/xsUpdate' />" method="get" name="form1">
+					<input name="button1" type="button" value="首页"onClick="openPage(1)">				
+					<input name="button2" type="button" value="上一页" onClick="openPage1(<%=currentPage %>)">
+				    <input name="button3" type="button" value="下一页" onClick="openPage2(<%=currentPage %>)">
+				    <input name="button4" type="button" value="尾页">
+				    <input name="cp" type="hidden" value="" />
+				</form>
 			</div>
 			<!-- 显示一个装备的信息-->
 			<div id="xs02" align="center">
@@ -90,84 +119,100 @@ $(function(){
 				<c:set value="${oneEquipments}" var="oneEquipments" />
 
 				<c:forEach items="${oneEquipments }" var="oneEquipment">
-					<div id="tab1" style="width: 100%;height: 90%;">
+					<div id="tab1" style="width: 100%; height: 90%;">
 						<table>
 							<tr>
 								<td>
-								<div style="border-left: 30px solid black;border-top: 30px solid black; float: left;" align="center">
-								<a href="#"><img
-										src="<c:url value='${oneEquipment.imgId }' />" /></a>
-								</div> 
-								<div style="border-left: 20px solid black;border-top: 30px solid black;float: left; ">
-								<a href="#"><c:out value="${oneEquipment.name }" /></a><br/>
-								
-								<c:set value="${fn:split(oneEquipment.sx ,' ') }" var="strs"/>
-								<c:forEach items="${strs }" var="str">
-								<a href="#"><c:out value="${str }" /></a><br/>
-								</c:forEach>
-								
-								</div></td>
+									<div
+										style="border-left: 30px solid black; border-top: 30px solid black; float: left;"
+										align="center">
+										<a href="#"><img
+											src="<c:url value='${oneEquipment.imgId }' />" /></a>
+									</div>
+									<div
+										style="border-left: 20px solid black; border-top: 30px solid black; float: left;">
+										<a href="#"><c:out value="${oneEquipment.name }" /></a><br />
+
+										<c:set value="${fn:split(oneEquipment.sx ,' ') }" var="strs" />
+										<c:forEach items="${strs }" var="str">
+											<a href="#"><c:out value="${str }" /></a>
+											<br />
+										</c:forEach>
+
+									</div>
+								</td>
 							</tr>
 							<tr>
-								<td >
-								<div>
-								<c:set value="${fn:split(oneEquipment.bd ,' ') }" var="strs01"/>
-								<c:forEach items="${strs01 }" var="str01">
-								<a href="#"><c:out value="${str01 }" /></a><br/>
-								</c:forEach> />
-								</div></td>
+								<td>
+									<div>
+										<c:set value="${fn:split(oneEquipment.bd ,' ') }" var="strs01" />
+										<c:forEach items="${strs01 }" var="str01">
+											<a href="#"><c:out value="${str01 }" /></a>
+											<br />
+										</c:forEach>
+										
+									</div>
+								</td>
 							</tr>
-							
-						</table>	
-						<button id="btn">修改</button>					
+
+						</table>
+						<br/>
+						<br/>
+						<br/><br/>
+						<img id="btn" alt="" src="<c:url value='/img/update.jpg' />" style="width: 150px;height: 30px;">
 					</div>
-					</c:forEach>
-					<!-- 修改 -->
+				</c:forEach>
+				<!-- 修改 -->
 
 				<c:set value="${oneEquipments}" var="Equipmentsxg" />
 
 				<c:forEach items="${Equipmentsxg }" var="Equipmentsxg">
-					<div id="tab2" style="width: 100%;height: 90%;">
-					<form action="<c:url value='/xsUpdate' />" method="post">
-						<table>
-							<tr>
-								<td>
-								<div style="border-left: 30px solid black;border-top: 30px solid black; float: left;" align="center">
-								<a href="#"><img
-										src="<c:url value='${Equipmentsxg.imgId }' />"/></a>
-								</div>
-								<div style="border-left: 20px solid black;border-top: 30px solid black;float: left; ">
-								<a href="#">
-								<input value="<c:out value='${Equipmentsxg.name}' />" name="name"></a><br/>
-								<input name="id" value="<c:out value='${Equipmentsxg.id }' />" type="hidden"/>
-								
-								
-								<a href="#"><input value="<c:out value='${Equipmentsxg.sx}' />" name="sx"></a><br/>
-								
-								
-								</div></td>
-							</tr>
-							<tr>
-								<td >
-								<div>
-				
-								<textarea style="width: 80%;height: 120px; background: black;color: yellow;" name="bd"><c:out value="${Equipmentsxg.bd }"/>
+					<div id="tab2" style="width: 100%; height: 90%;">
+						<form action="<c:url value='/xsUpdate' />" method="post" id="form">
+							<table>
+								<tr>
+									<td>
+										<div
+											style="border-left: 30px solid black; border-top: 30px solid black; float: left;"
+											align="center">
+											<a href="#"><img
+												src="<c:url value='${Equipmentsxg.imgId }' />" /></a>
+										</div>
+										<div
+											style="border-left: 20px solid black; border-top: 30px solid black; float: left;">
+											<a href="#"> <input
+												value="<c:out value='${Equipmentsxg.name}' />" name="name"></a><br />
+											<input name="id"
+												value="<c:out value='${Equipmentsxg.id }' />" type="hidden" />
+
+
+											<a href="#"><input
+												value="<c:out value='${Equipmentsxg.sx}' />" name="sx"></a><br />
+
+
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div>
+
+											<textarea
+												style="width: 80%; height: 120px; background: black; color: yellow;"
+												name="bd"><c:out value="${Equipmentsxg.bd }" />
 								</textarea>
-								</div></td>
-							</tr>
-							
-						</table>
-						<br/>	
-						<br/>	
-						<br/>	
-						<br/>	<br/>	
-						<br/>	
-						<button type="submit">确认更改</button>
-						</form>					
+										</div>
+									</td>
+								</tr>
+
+							</table>
+							<br /> <br /> <br /> <br /> <br /> <br />
+							<img id="btn2" alt="" src="<c:url value='/img/sure.jpg' />" >
+						</form>
 					</div>
-					</c:forEach>
-				
-                
+				</c:forEach>
+
+
 			</div>
 		</div>
 	</div>
@@ -179,8 +224,7 @@ $(function(){
 		<a href="#">英雄社区</a>
 	</div>
 	<div id="menu3">
-		<a href="#"
-		>好友动态</a>
+		<a href="#">好友动态</a>
 	</div>
 	<div id="menu4">
 		<a href="#">热门资讯</a>
