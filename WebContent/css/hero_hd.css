@@ -193,15 +193,24 @@ a:active {color: gold}   /* 琚�夋嫨鐨勯摼鎺� */
 #desc #xs02{
 	width: 30%;
 	height: 580px;
-	background: yellow;
+	background: black;
 	float: left;
-}
-#desc #xs01 table{
-	color: white;
-}
-#desc #xs01 #tab{
-	float: left;
-	margin-left: 20px;
-	
 }
 
+#desc #xs01 #tab{
+	float: left;
+	width: 90px;
+	height: 120px;
+	border-left: 35px solid black;
+	border-top:  10px solid black;	
+}
+#desc #xs01 #tab1 table{
+	font: 10px;
+	color: yellow;
+	
+}
+input {
+	background-color: black;
+	width: 100px;
+	color: yellow;
+}

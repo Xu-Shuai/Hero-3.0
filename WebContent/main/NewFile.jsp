@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <form action="<c:url value='/xs' />">
+    <form action="<c:url value='/xs' />" method="post">
     <button type="submit">提交</button> 
     </form>
 </body>

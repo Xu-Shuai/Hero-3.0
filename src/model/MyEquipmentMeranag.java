@@ -60,10 +60,11 @@ public class MyEquipmentMeranag {
 		con = getConnection();		
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from Equipment");
+			rs = stmt.executeQuery("select * from equipment ORDER BY ID ");
 			myEquipments = new ArrayList<MyEquipment>();			
 			while(rs.next()){
-				myEquipment = new MyEquipment();				
+				myEquipment = new MyEquipment();	
+				myEquipment.setId(rs.getInt("ID"));
 				myEquipment.setName(rs.getString("NAME"));
 				myEquipment.setImgId(rs.getString("IMGID"));
 				myEquipment.setBd(rs.getString("BD"));
@@ -79,22 +80,46 @@ public class MyEquipmentMeranag {
 		}
 		return myEquipments;		
 	}
-	//修改英雄信息
+	//查询某件装备
+	public List<MyEquipment> oneEquipment(int id){
+		con = getConnection();		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select * from equipment where ID = "+id);
+			myEquipments = new ArrayList<MyEquipment>();			
+			while(rs.next()){
+				myEquipment = new MyEquipment();	
+				myEquipment.setId(rs.getInt("ID"));
+				myEquipment.setName(rs.getString("NAME"));
+				myEquipment.setImgId(rs.getString("IMGID"));
+				myEquipment.setBd(rs.getString("BD"));
+				myEquipment.setSx(rs.getString("SX"));				
+				myEquipments.add(myEquipment);
+			}
+			rs.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return myEquipments;		
+	}
+	
+	//修改装备信息
 		public void modifyMyhero(MyEquipment myEquipment){
-			String sql = "UPDATE Equipment SET NAME = '?'"
-					+ ",IMGID='?'"
-					+ ",BD='?'"
-					+ ",SX='?' WHERE ID = '"+myEquipment.getId()+"' ";
+			String sql ="UPDATE equipment SET NAME=?, BD=?, SX=? WHERE ID='"+myEquipment.getId()+"'";
 			con = getConnection();
 			
 			try {
+				
 				ps = con.prepareStatement(sql);				
 				ps.setString(1, myEquipment.getName());
-				ps.setString(2, myEquipment.getImgId());
-				ps.setString(3, myEquipment.getBd());
-				ps.setString(4, myEquipment.getSx());
+				ps.setString(2, myEquipment.getBd());
+				ps.setString(3, myEquipment.getSx());
 				ps.executeUpdate();				
 				ps.close();
+				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
