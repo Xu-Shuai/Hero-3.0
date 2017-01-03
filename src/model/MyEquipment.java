@@ -1,7 +1,7 @@
 package model;
 
 public class MyEquipment {
-	private String id;
+	private int id;
 	private String name;
 	private String imgId;
 	private String bd;
@@ -10,7 +10,7 @@ public class MyEquipment {
 	public MyEquipment() {		
 		 
 	}
-	public MyEquipment(String id,String name,String imgId,String bd,String sx) {
+	public MyEquipment(int id,String name,String imgId,String bd,String sx) {
 		this.id=id;
 		this.name=name;
 		this.imgId=imgId;
@@ -18,11 +18,11 @@ public class MyEquipment {
 		this.sx=sx;	 
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
