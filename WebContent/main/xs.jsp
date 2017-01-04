@@ -216,7 +216,7 @@ function userCheck(){
 						<br/>
 						<br/>
 						<br/><br/>
-						<p><img id="btn" alt="" src="<c:url value='/img/update.jpg' />" style="width: 120px;height: 30px;">
+						<p><img id="btn"  src="<c:url value='/img/update.jpg' />" style="width: 120px;height: 30px;">
 						<img id="add" alt="" src="<c:url value='/img/add.jpg' />" style="width: 120px;height: 30px;">
 						</p>
 					</div>
