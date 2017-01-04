@@ -38,7 +38,7 @@ public class MyEquipmentMeranag {
 	}
 	//添加装备
 	public void addMyEquipment(MyEquipment myEquipment){
-		String sql = "insert into Equipment values (id,?,?,?,?)";
+		String sql = "insert into Equipment (NAME,IMGID,BD,SX) values (?,?,?,?)";
 		con = getConnection();
 		
 		try {
@@ -55,21 +55,38 @@ public class MyEquipmentMeranag {
 			e.printStackTrace();
 		}
 	}
-	//查询所有装备
-	public List<MyEquipment> allMusic(){
-		con = getConnection();		
+	//分頁查询所有装备
+	public List<MyEquipment> allZb(int cp){
+		// 1、定义每页要显示的记录数
+		int lineSize = 15;
+		// 2、定义一个当前是第几页
+		int currentPage = 1;
+		//接受传过来的当前页
+		
+		 try{
+			  currentPage = cp;
+			 }catch(Exception e){
+			  e.printStackTrace();
+			 }
+		 
+		con = getConnection();	
+		
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("select * from equipment ORDER BY ID ");
-			myEquipments = new ArrayList<MyEquipment>();			
-			while(rs.next()){
+			myEquipments = new ArrayList<MyEquipment>();	
+			for(int x=0; x<(currentPage-1)*lineSize; x++){
+			  	rs.next();
+			 }
+			 for(int x=0; x<lineSize; x++){
+				  if(rs.next()){
 				myEquipment = new MyEquipment();	
 				myEquipment.setId(rs.getInt("ID"));
 				myEquipment.setName(rs.getString("NAME"));
 				myEquipment.setImgId(rs.getString("IMGID"));
-				myEquipment.setBd(rs.getString("BD"));
-				myEquipment.setSx(rs.getString("SX"));				
+				myEquipment.setCurrentPage(currentPage);
 				myEquipments.add(myEquipment);
+				  }
 			}
 			rs.close();
 			stmt.close();
@@ -124,6 +141,31 @@ public class MyEquipmentMeranag {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		//ajax
+		public boolean findByUsername(String name){
+			String sql = "select * from hero where NAME = ?";
+			con = getConnection();
+			boolean isExist = false;
+			
+			try {
+				ps = con.prepareStatement(sql);//预处理
+				
+				ps.setString(1, name);
+				
+				rs = ps.executeQuery();//执行
+				
+				if(rs.next()){
+					isExist = true;
+				}
+				
+				ps.close();
+				con.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return isExist;
 		}
 		
 

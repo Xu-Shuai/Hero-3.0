@@ -9,7 +9,8 @@
 </head>
 <body>
 
-    <form action="<c:url value='/xs' />" method="post">
+    <form action="<c:url value='/xsUpdate' />" method="get">
+    <input name="cp" value="1">
     <button type="submit">提交</button> 
     </form>
 </body>

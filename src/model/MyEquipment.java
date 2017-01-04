@@ -6,6 +6,9 @@ public class MyEquipment {
 	private String imgId;
 	private String bd;
 	private String sx;
+	
+	private int currentPage;
+
 
 	public MyEquipment() {		
 		 
@@ -56,6 +59,12 @@ public class MyEquipment {
 
 	public void setSx(String sx) {
 		this.sx = sx;
+	}
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
 
 }
