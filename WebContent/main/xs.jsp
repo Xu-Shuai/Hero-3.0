@@ -33,6 +33,10 @@ $(function(){
 		$("#myform").submit();
 		
 	});
+	$("#select").click(function(){
+		$("#oneSelect").submit();
+		
+	});
 })
 
 var XMLHttpReq = false;
@@ -146,7 +150,14 @@ function userCheck(){
 		  document.form1.submit();
 	 }
  </script>
- <div style="position: relative;bottom: -110px;left:100px;float: left;">
+ <div style="position: relative;bottom: -90px;left:100px;float: left;">
+ <form action="<c:url value='/OneSelect' />" id="oneSelect">
+<p> 
+<input type="text" name="name" style="width: 150px;height: 30px;position: relative;top: -10px"> 
+<img id="select" alt="" src="<c:url value='/img/select.jpg' />" style="width: 120px;height: 30px;">
+<img id="add" alt="" src="<c:url value='/img/add.jpg' />" style="width: 120px;height: 30px;">
+</p>
+ </form>
 				<form action="<c:url value='/xsUpdate' />" method="get" name="form1">
 					<input name="button1" type="button" value="首页"onClick="openPage(1)">				
 					<input name="button2" type="button" value="上一页" onClick="openPage1(<%=currentPage %>)">

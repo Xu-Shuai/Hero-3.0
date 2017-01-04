@@ -98,11 +98,16 @@ public class MyEquipmentMeranag {
 		return myEquipments;		
 	}
 	//查询某件装备
-	public List<MyEquipment> oneEquipment(int id){
+	public List<MyEquipment> oneEquipment(int id,String name){
 		con = getConnection();		
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from equipment where ID = "+id);
+			if(name==null){
+				rs = stmt.executeQuery("select * from equipment where ID = "+id);
+			}else{
+				rs = stmt.executeQuery("select * from hero.equipment where NAME like '%"+name+"%'");
+			}
+			
 			myEquipments = new ArrayList<MyEquipment>();			
 			while(rs.next()){
 				myEquipment = new MyEquipment();	

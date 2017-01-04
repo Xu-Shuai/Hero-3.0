@@ -15,16 +15,16 @@ import model.MyEquipment;
 import model.MyEquipmentMeranag;
 
 /**
- * Servlet implementation class MyEquipmentServlet
+ * Servlet implementation class MyEquipmentOneSelect
  */
-@WebServlet("/xs")
-public class MyEquipmentServlet extends HttpServlet {
+@WebServlet("/OneSelect")
+public class MyEquipmentOneSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyEquipmentServlet() {
+    public MyEquipmentOneSelect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,13 @@ public class MyEquipmentServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    //查询单个装备信息
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//转码
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		int id = Integer.parseInt(request.getParameter("id"));//从表单获得英雄id
+		String name = request.getParameter("name");//从表单获得英雄id
 		MyEquipmentMeranag mem=new MyEquipmentMeranag();
 		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
-		myEquipments=mem.oneEquipment(id,null);
+		myEquipments=mem.oneEquipment(0,name);
 		request.setAttribute("oneEquipments", myEquipments);
 		
 		MyEquipmentMeranag mem01=new MyEquipmentMeranag();
@@ -49,35 +48,15 @@ public class MyEquipmentServlet extends HttpServlet {
 		
 		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
 		dis.forward(request, response);
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	//添加
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//转码
-		request.setCharacterEncoding("utf-8");
-		String name=request.getParameter("name");
-		String img="/imgzb/"+request.getParameter("image");
-		String sx=request.getParameter("sx");
-		String bd=request.getParameter("bd");
-		MyEquipmentMeranag mem=new MyEquipmentMeranag();
-		MyEquipment myEquipment=new MyEquipment();
-		myEquipment.setName(name);
-		myEquipment.setImgId(img);
-		myEquipment.setBd(bd);
-		myEquipment.setSx(sx);
-		mem.addMyEquipment(myEquipment);
-		
-		
-		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
-		myEquipments=mem.allZb(1);
-		request.setAttribute("myEquipments", myEquipments);
-		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
-		dis.forward(request, response);
-		
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
