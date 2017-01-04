@@ -14,6 +14,7 @@
     <button type="submit">提交</button> 
     </form>
     <form action="<c:url value='/yx' />" method="get">
+    <input name="cp" value="1">
     <button type="submit">提交2</button> 
     </form>
 </body>

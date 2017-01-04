@@ -16,6 +16,8 @@ public class Hero_yx {
 	
 	private String herosImgM;
 	
+	private int currentPage;
+	
 	public int getHerosID() {
 		return herosID;
 	}
@@ -57,6 +59,12 @@ public class Hero_yx {
 	}
 	public void setHerosImgM(String herosImgM) {
 		this.herosImgM = herosImgM;
+	}
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
 	
 }

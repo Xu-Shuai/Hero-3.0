@@ -13,18 +13,66 @@
 
 <script type="text/javascript">
 $(function(){
+	$("#return").hide();
 	$("#delete").click(function(){
+		$("#add").hide();
+		$("#delete").hide();
+		$("#return").show();
 		$("button").show();
 	});
 });
 
 $(function(){
 	$("#return").click(function(){
+		$("#add").show();
+		$("#delete").show();
 		$("button").hide();
+		$("#return").hide();
 	});
-})
+	$("#addhero").hide();
+	$("#add").click(function(){
+		$("#addhero").show();
+		$("#yx").hide();
+	});
+	$("#queren").click(function(){
+		$("#myform").submit();
+		
+	});
+});
 
 </script> 
+<SCRIPT language=JavaScript type=text/JavaScript>
+var XMLHttpReq = false;
+function createXMLHttpRequest(){
+    if(window.XMLHttpRequest){
+       XMLHttpReq = new XMLHttpRequest();
+    }else if(window.ActiveXObject){
+       try{
+           XMLHttpReq = new ActiveXObject("MSXML2.XMLHTTP");
+       }catch(e){
+           try{
+              XMLHttpReq = new ActiveXObject("Mircsoft.XMLHTTP");
+           }catch(e1){}
+       }
+    }
+}
+function sendRequest(url){
+    createXMLHttpRequest();
+    XMLHttpReq.open("GET",url,true);
+    XMLHttpReq.onreadystatechange = processResponse;
+    XMLHttpReq.send(null);
+}
+function userCheck(){
+    var herosName = document.myform.herosName.value;
+    if(herosName == ""){
+       window.alert("用户名不能为空");
+       document.myform.herosName.focus();
+       return false;
+    }else{
+       sendRequest("yx?herosName="+herosName);
+    }
+}
+</SCRIPT>
 </head>
 <body>
 	<div id="star_bg">
@@ -68,6 +116,10 @@ $(function(){
 				<%
 					ArrayList<Hero_yx> heros_yx = new ArrayList<Hero_yx>();
 					heros_yx = (ArrayList<Hero_yx>) request.getAttribute("heros_yx");
+					int currentPage=0;
+					for(Hero_yx ceshi:heros_yx){
+						currentPage=ceshi.getCurrentPage();
+					}
 				%>
 				
 				<c:set value="<%=heros_yx%>" var="hero_yx" />
@@ -93,15 +145,58 @@ $(function(){
 						</table>
 					</div>
 				</c:forEach>
-				<img id="add" src="image-yx/add.jpg" width="80" height="80" style="float: left;padding-left: 25px;padding-top: 35px"  />
-				<div style="float:left; padding-top: 50px;padding-left: 270px">
-				<img id="delete" src="image-yx/delete.jpg"  />&nbsp;&nbsp;&nbsp;
-				<img id="return" src="image-yx/return.jpg"  />
-				</div>
-			</div>
-		</div>
-	</div>
+				   
+				    <script language="javascript">
+	 function openPage(curpage){
+	  document.form1.cp.value=curpage;
+	  document.form1.submit();
+ }
+	 function openPage1(curpage){
+		  document.form1.cp.value=curpage-1;
+		  document.form1.submit();
+	 }
+	 function openPage2(curpage){
+		  document.form1.cp.value=curpage+1;
+		  document.form1.submit();
+	 }
+ </script>
+				   <div style="position: relative;bottom: -200px;left:280px;float: left;">
+				      <form action="<c:url value='/yx' />" method="get" name="form1">
+					    <input name="button1" type="button" value="首页"onClick="openPage(1)">				
+					    <input name="button2" type="button" value="上一页" onClick="openPage1(<%=currentPage %>)">
+				        <input name="button3" type="button" value="下一页" onClick="openPage2(<%=currentPage %>)">
+				        <input name="button4" type="button" value="尾页">
+				        <input name="cp" type="hidden" value="" />
+				     </form>
+				  </div>
+				
+				   <div id="B" style="float:left; padding-top: 10px;padding-left: 380px">
+				   <img id="add" src="image-yx/add.jpg" width="80" height="80" style="padding-left: 50px"/>
+				   <br />
+				   <br />
+				        <img id="delete" src="image-yx/delete.jpg"  />&nbsp;&nbsp;&nbsp;
+				        <img id="return" src="image-yx/return.jpg"  />
+				   </div>
 
+			</div>
+							 <!-- 添加  -->
+				 <div id="addhero" style="width: 100%; height: 80%;text-align: center;">
+                     <form action="<c:url value='/yx' />" method="post" name="myform" id="myform">
+                     <h1><font color="red">英雄人物添加</font></h1>
+                        <p><font color="red">英雄名字：</font> <input name="herosName" onblur="userCheck()"></p>
+                        <p><font color="red">英雄称号： </font><input name="herosNickName"> </p>
+                        <p><font color="red">英雄图标： </font><input type="file" name="herosImgM"></p>
+                        <p><font color="red">英雄图片： </font><input type="file" name="herosImgB"></p> 
+                        <p><font color="red">英雄背景：</font> <textarea rows="10" cols="20" name="herosDesc"></textarea></p> 
+                        <p><img id="queren" alt="" src="<c:url value='/img/sure.jpg' />"></p>
+                     </form>
+                 </div>
+		</div>
+		
+	</div>
+	
+	
+	
 	<div id="menu1">
 		<a href="#">我的专区</a>
 	</div>

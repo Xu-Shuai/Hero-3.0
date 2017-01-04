@@ -9,7 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>英雄联盟助手_V3.0</title>
 <link rel="stylesheet" href="<c:url value='/css/hero_hd.css' />" />
+<script src="<c:url value='/js/jquery-1.8.3.js' />"></script>
  
+ <script type="text/javascript">
+ $(function(){
+ $("#return").click(function(){
+		$("#myform1").submit();
+		
+	});
+})
+ </script>
 </head>
 <body>
 	<div id="star_bg">
@@ -76,8 +85,9 @@
 							    <td></td>
 							</tr>
 							<tr>
-							    <td><form action="<c:url value='/yx' />" method="get">
-                                       <button type="submit">返回</button> 
+							    <td>
+							    <form action="<c:url value='/yx' />" method="post" name="myform1" id="myform1">
+                                       <img id="return" alt="" src="<c:url value='/img/return.jpg' />"> 
                                     </form>
                                 </td>
 							</tr>

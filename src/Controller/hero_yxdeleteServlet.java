@@ -18,13 +18,13 @@ import model.Hero_yxManager;
  * Servlet implementation class hero_yxdelete
  */
 @WebServlet("/hero_delete")
-public class hero_yxdelete extends HttpServlet {
+public class hero_yxdeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public hero_yxdelete() {
+    public hero_yxdeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,7 +45,7 @@ public class hero_yxdelete extends HttpServlet {
 		
 		Hero_yxManager hero=new Hero_yxManager();
 		List<Hero_yx> heros_yx=new ArrayList<Hero_yx>();
-		heros_yx=hero.allHero();
+		heros_yx=hero.allHero(1);
 		request.setAttribute("heros_yx",heros_yx );
 		RequestDispatcher dis=request.getRequestDispatcher("/main/onehero.jsp");	
 		dis.forward(request, response);
@@ -67,7 +67,7 @@ public class hero_yxdelete extends HttpServlet {
 		
 		Hero_yxManager hero=new Hero_yxManager();		
 		List<Hero_yx> heros_yx=new ArrayList<Hero_yx>();
-		heros_yx=hero.allHero();
+		heros_yx=hero.allHero(1);
 		request.setAttribute("heros_yx", heros_yx);
 		RequestDispatcher dis=request.getRequestDispatcher("/main/yx.jsp");	
 		dis.forward(request, response);
