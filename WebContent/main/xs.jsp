@@ -15,6 +15,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#tab2").hide();
+	$("#tab3").hide();
 	$("#btn").click(function(){
 		$("#tab1").hide();
 		$("#tab2").show();
@@ -24,8 +25,48 @@ $(function(){
 	$("#btn2").click(function(){
 		$("#form").submit();
 	});
-	
+	$("#add").click(function(){
+		$("#tab3").show();
+		$("#tab1").hide();
+	});
+	$("#queren").click(function(){
+		$("#myform").submit();
+		
+	});
 })
+
+var XMLHttpReq = false;
+function createXMLHttpRequest(){
+    if(window.XMLHttpRequest){
+       XMLHttpReq = new XMLHttpRequest();
+    }else if(window.ActiveXObject){
+       try{
+           XMLHttpReq = new ActiveXObject("MSXML2.XMLHTTP");
+       }catch(e){
+           try{
+              XMLHttpReq = new ActiveXObject("Mircsoft.XMLHTTP");
+           }catch(e1){}
+       }
+    }
+}
+function sendRequest(url){
+    createXMLHttpRequest();
+    XMLHttpReq.open("GET",url,true);
+    XMLHttpReq.onreadystatechange = processResponse;
+    XMLHttpReq.send(null);
+}
+function userCheck(){
+    var name = document.myform.name.value;
+   
+    if(name == ""){
+       window.alert("装备名不能为空");
+       
+       document.myform.name.focus();
+       return false;
+    }else{
+       sendRequest("xs?id="+name);
+    }
+}
 </script>
 </head>
 <body>
@@ -66,7 +107,10 @@ $(function(){
 				<%
 					ArrayList<MyEquipment> myEquipments = new ArrayList<MyEquipment>();
 					myEquipments = (ArrayList<MyEquipment>) request.getAttribute("myEquipments");
-					int currentPage=1;
+					int currentPage=0;
+					for(MyEquipment cheshi:myEquipments){
+						currentPage=cheshi.getCurrentPage();
+					}
 				%>
 				<c:set value="${myEquipments}" var="Equipments" />
 
@@ -79,7 +123,7 @@ $(function(){
 										src="<c:url value='${myEquipment.imgId }' />"
 										style="width: 50px; height: 50px;" /></a></td>
 							</tr>
-							
+	
 							<tr>
 								<td align="center"><a
 									href="http://localhost/Hero/xs?id=<c:url value='${myEquipment.id }' />"><c:out
@@ -102,6 +146,7 @@ $(function(){
 		  document.form1.submit();
 	 }
  </script>
+ <div style="position: relative;bottom: -110px;left:100px;float: left;">
 				<form action="<c:url value='/xsUpdate' />" method="get" name="form1">
 					<input name="button1" type="button" value="首页"onClick="openPage(1)">				
 					<input name="button2" type="button" value="上一页" onClick="openPage1(<%=currentPage %>)">
@@ -109,6 +154,7 @@ $(function(){
 				    <input name="button4" type="button" value="尾页">
 				    <input name="cp" type="hidden" value="" />
 				</form>
+				</div>
 			</div>
 			<!-- 显示一个装备的信息-->
 			<div id="xs02" align="center">
@@ -159,7 +205,9 @@ $(function(){
 						<br/>
 						<br/>
 						<br/><br/>
-						<img id="btn" alt="" src="<c:url value='/img/update.jpg' />" style="width: 150px;height: 30px;">
+						<p><img id="btn" alt="" src="<c:url value='/img/update.jpg' />" style="width: 120px;height: 30px;">
+						<img id="add" alt="" src="<c:url value='/img/add.jpg' />" style="width: 120px;height: 30px;">
+						</p>
 					</div>
 				</c:forEach>
 				<!-- 修改 -->
@@ -213,7 +261,16 @@ $(function(){
 					</div>
 				</c:forEach>
 
-
+         <!-- 添加  -->
+         <div id="tab3" style="width: 100%; height: 90%;">
+         <form action="<c:url value='/xs' />" method="post" name="myform" id="myform">
+        <p>装备名字： <input name="name" onblur="userCheck()"></p>
+        <p>装备图片： <input type="file" name="image"> </p>
+        <p>装备属性： <textarea rows="5" cols="20" name="sx"></textarea></p>
+        <p>装备被动： <textarea rows="10" cols="20" name="bd"></textarea></p>
+        <p><img id="queren" alt="" src="<c:url value='/img/sure.jpg' />" style="width: 120px;height: 30px;"></p>
+         </form>
+         </div>
 			</div>
 		</div>
 	</div>

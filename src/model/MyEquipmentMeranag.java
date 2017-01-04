@@ -38,7 +38,7 @@ public class MyEquipmentMeranag {
 	}
 	//添加装备
 	public void addMyEquipment(MyEquipment myEquipment){
-		String sql = "insert into Equipment values (id,?,?,?,?)";
+		String sql = "insert into Equipment (NAME,IMGID,BD,SX) values (?,?,?,?)";
 		con = getConnection();
 		
 		try {
@@ -58,7 +58,7 @@ public class MyEquipmentMeranag {
 	//分頁查询所有装备
 	public List<MyEquipment> allZb(int cp){
 		// 1、定义每页要显示的记录数
-		int lineSize = 20;
+		int lineSize = 15;
 		// 2、定义一个当前是第几页
 		int currentPage = 1;
 		//接受传过来的当前页
@@ -141,6 +141,31 @@ public class MyEquipmentMeranag {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		//ajax
+		public boolean findByUsername(String name){
+			String sql = "select * from hero where NAME = ?";
+			con = getConnection();
+			boolean isExist = false;
+			
+			try {
+				ps = con.prepareStatement(sql);//预处理
+				
+				ps.setString(1, name);
+				
+				rs = ps.executeQuery();//执行
+				
+				if(rs.next()){
+					isExist = true;
+				}
+				
+				ps.close();
+				con.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return isExist;
 		}
 		
 

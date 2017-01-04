@@ -54,8 +54,28 @@ public class MyEquipmentServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//Ìí¼Ó
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//×ªÂë
+		request.setCharacterEncoding("utf-8");
+		String name=request.getParameter("name");
+		String img="/imgzb/"+request.getParameter("image");
+		String sx=request.getParameter("sx");
+		String bd=request.getParameter("bd");
+		MyEquipmentMeranag mem=new MyEquipmentMeranag();
+		MyEquipment myEquipment=new MyEquipment();
+		myEquipment.setName(name);
+		myEquipment.setImgId(img);
+		myEquipment.setBd(bd);
+		myEquipment.setSx(sx);
+		mem.addMyEquipment(myEquipment);
 		
+		
+		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
+		myEquipments=mem.allZb(1);
+		request.setAttribute("myEquipments", myEquipments);
+		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
+		dis.forward(request, response);
 		
 		
 	}
