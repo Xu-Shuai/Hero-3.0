@@ -69,6 +69,7 @@ public class Hero_yxManager {
 		con = getConnection();
 		
 		try {
+			ps = con.prepareStatement(sql);
 			ps.setString(1, hero_yx.getHerosName());
 			ps.setString(2, hero_yx.getHerosNickName());
 			ps.setString(3, hero_yx.getHerosDesc());
@@ -91,13 +92,14 @@ public class Hero_yxManager {
 		
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from Hero");
+			rs = stmt.executeQuery("select * from Hero where HERO_DELETE = false");
 			heros_yx = new ArrayList<Hero_yx>();
 			
 			while(rs.next()){
 				hero_yx = new Hero_yx();
-				
+				hero_yx.setHerosID(rs.getInt("HERO_ID"));
 				hero_yx.setHerosName(rs.getString("HERO_NAME"));
+				
 				hero_yx.setHerosNickName(rs.getString("HERO_NICKNAME"));
 				hero_yx.setHerosDesc(rs.getString("HERO_DESC"));
 				hero_yx.setHerosImgS(rs.getString("HERO_IMGS"));
@@ -116,12 +118,53 @@ public class Hero_yxManager {
 		
 	}
 	
+	//²éÑ¯Ä³¸öÓ¢ÐÛ
+	public List<Hero_yx> oneheros_yx(int herosID){
+		con = getConnection();		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select * from hero where HERO_ID = "+ herosID);
+			heros_yx = new ArrayList<Hero_yx>();			
+			while(rs.next()){
+				hero_yx=new Hero_yx();
+				hero_yx.setHerosID(rs.getInt("HERO_ID"));
+				hero_yx.setHerosName(rs.getString("HERO_NAME"));
+				hero_yx.setHerosNickName(rs.getString("HERO_NICKNAME"));
+				hero_yx.setHerosDesc(rs.getString("HERO_DESC"));
+				hero_yx.setHerosImgS(rs.getString("HERO_IMGS"));
+				hero_yx.setHerosImgB(rs.getString("HERO_IMGB"));
+				hero_yx.setHerosImgM(rs.getString("HERO_IMGM"));
+				
+				heros_yx.add(hero_yx);
+			}
+			rs.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return heros_yx;		
+	}
+	
 	//É¾³ýÓ¢ÐÛÐÅÏ¢
-	public void deleteHero(Hero_yx hero_yx){
-		String sql = "update Hero set HERO_DELETE = true"
-				+ "WHERE ID = '"+ hero_yx.getHerosID()+"' ";
+	public void deleteHero(int  hero_yx){
+//		String sql = "delete from Hero where HERO_ID ="+ hero_yx;
+		String sql = "update Hero set HERO_DELETE = true where HERO_ID="+ hero_yx;
 		
 		con = getConnection();
+		try {
+			
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();	
+			//¹Ø±Õ
+			ps.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

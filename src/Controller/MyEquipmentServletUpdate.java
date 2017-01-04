@@ -15,16 +15,16 @@ import model.MyEquipment;
 import model.MyEquipmentMeranag;
 
 /**
- * Servlet implementation class MyEquipmentServlet
+ * Servlet implementation class MyEquipmentServletUpdate
  */
-@WebServlet("/xs")
-public class MyEquipmentServlet extends HttpServlet {
+@WebServlet("/xsUpdate")
+public class MyEquipmentServletUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyEquipmentServlet() {
+    public MyEquipmentServletUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,35 +33,33 @@ public class MyEquipmentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//转码
-		request.setCharacterEncoding("utf-8");
-		int id = Integer.parseInt(request.getParameter("id"));//从表单获得英雄id
-		MyEquipmentMeranag mem=new MyEquipmentMeranag();
-		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
-		myEquipments=mem.oneEquipment(id);
-		request.setAttribute("oneEquipments", myEquipments);
-		
-		MyEquipmentMeranag mem01=new MyEquipmentMeranag();
-		List<MyEquipment> myEquipments01=new ArrayList<MyEquipment>();
-		myEquipments01=mem01.allMusic();
-		request.setAttribute("myEquipments", myEquipments01);
-		
-		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
-		dis.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		MyEquipmentMeranag mem=new MyEquipmentMeranag();
+		//转码
+		request.setCharacterEncoding("utf-8");
+		String name = request.getParameter("name");//从表单获得英雄name
+		String bd = request.getParameter("bd");//从表单获得英雄name
+		String sx = request.getParameter("sx");//从表单获得英雄name
+		Integer id=Integer.parseInt(request.getParameter("id"));
+		MyEquipment myEquipment=new MyEquipment();
+		myEquipment.setId(id);
+		myEquipment.setName(name);
+		myEquipment.setBd(bd);
+		myEquipment.setSx(sx);
+		mem.modifyMyhero(myEquipment);
 		
-		MyEquipmentMeranag mem=new MyEquipmentMeranag();		
 		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
 		myEquipments=mem.allMusic();
 		request.setAttribute("myEquipments", myEquipments);
-		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
+		RequestDispatcher dis=request.getRequestDispatcher("/xs");	
 		dis.forward(request, response);
-		
 	}
 
 }

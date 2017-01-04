@@ -9,22 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>英雄联盟助手_V3.0</title>
 <link rel="stylesheet" href="<c:url value='/css/hero_hd.css' />" />
-<script src="<c:url value='/js/jquery-1.8.3.js' />"></script>
-
-<script type="text/javascript">
-$(function(){
-	$("#delete").click(function(){
-		$("button").show();
-	});
-});
-
-$(function(){
-	$("#return").click(function(){
-		$("button").hide();
-	});
-})
-
-</script> 
+ 
 </head>
 <body>
 	<div id="star_bg">
@@ -57,47 +42,48 @@ $(function(){
 	<div id="main_desc">
 		<img src="<c:url value='/img/ty_x.png' />" width="1020px"
 			height="650px" />
-			
 		<!-- 这是写自己的主要内容的地方 -->
-		
-		
 		<div id="desc">
-	
 			<div id="yx">
 
 				<%
-					ArrayList<Hero_yx> heros_yx = new ArrayList<Hero_yx>();
-					heros_yx = (ArrayList<Hero_yx>) request.getAttribute("heros_yx");
+					ArrayList<Hero_yx> oneheros_yxs = new ArrayList<Hero_yx>();
+					oneheros_yxs = (ArrayList<Hero_yx>) request.getAttribute("oneheros_yx1");
 				%>
 				
-				<c:set value="<%=heros_yx%>" var="hero_yx" />
+				<c:set value="<%=oneheros_yxs%>" var="oneheros_yx" />
 
-				<c:forEach items="${hero_yx }" var="hero_yx1">
+				<c:forEach items="${oneheros_yx }" var="oneheros_yx">
 					<div id="A">
 						<table>
 							<tr>
-								<td><a href="hero_delete?herosID=<c:url value='${hero_yx1.herosID }' />"><img src="<c:url value='${hero_yx1.herosImgM }' />" width="80" height="80" onmousemove="showPic();" onmouseout="hiddenPic();" /></a></td>
+								<td><img src="<c:url value='${oneheros_yx.herosImgB }' />" width="150" height="271"  /></td>
 							</tr>
 							<tr>
-								<td><a href="hero_delete?herosID=<c:url value='${hero_yx1.herosID }' />"><c:out value="${hero_yx1.herosName }" /></a></td>
+								<td><font size="5" color="greenyellow">LOL <c:out value="${oneheros_yx.herosName }" /></font></td>
 							</tr>
 							<tr>
-							
-							    <td>
-							    <form action="<c:url value='/hero_delete' />" method="post">
-							    <input value="<c:url value='${hero_yx1.herosID }' />" type="hidden" name="herosID">
-							    <button style="display: none;" type="submit">删除</button>
-							    </form>
-							    </td>
+								<td><font size="3" color="yellow">称号：</font><c:out value="${oneheros_yx.herosNickName }" /></td>
+							</tr>
+							<tr>
+								<td>
+								  <div id="a" style="margin-left:100px; width: 700px; text-align: left;">
+								    <font size="3" color="yellow">英雄背景：</font><c:out value="${oneheros_yx.herosDesc }" />
+								  </div>
+								</td>
+							</tr>
+							<tr>
+							    <td></td>
+							</tr>
+							<tr>
+							    <td><form action="<c:url value='/yx' />" method="get">
+                                       <button type="submit">返回</button> 
+                                    </form>
+                                </td>
 							</tr>
 						</table>
 					</div>
 				</c:forEach>
-				<img id="add" src="image-yx/add.jpg" width="80" height="80" style="float: left;padding-left: 25px;padding-top: 35px"  />
-				<div style="float:left; padding-top: 50px;padding-left: 270px">
-				<img id="delete" src="image-yx/delete.jpg"  />&nbsp;&nbsp;&nbsp;
-				<img id="return" src="image-yx/return.jpg"  />
-				</div>
 			</div>
 		</div>
 	</div>
