@@ -32,14 +32,22 @@ public class MyEquipmentServletUpdate extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //分页显示
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		int cp=Integer.parseInt(request.getParameter("cp"));
+		MyEquipmentMeranag mem=new MyEquipmentMeranag();		
+		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
+		myEquipments=mem.allZb(cp);
+		request.setAttribute("myEquipments", myEquipments);
+		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
+		dis.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//修改
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MyEquipmentMeranag mem=new MyEquipmentMeranag();
 		//转码
@@ -56,9 +64,9 @@ public class MyEquipmentServletUpdate extends HttpServlet {
 		mem.modifyMyhero(myEquipment);
 		
 		List<MyEquipment> myEquipments=new ArrayList<MyEquipment>();
-		myEquipments=mem.allMusic();
+		myEquipments=mem.allZb(1);
 		request.setAttribute("myEquipments", myEquipments);
-		RequestDispatcher dis=request.getRequestDispatcher("/xs");	
+		RequestDispatcher dis=request.getRequestDispatcher("/main/xs.jsp");	
 		dis.forward(request, response);
 	}
 
